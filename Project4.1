@@ -1,0 +1,89 @@
+public class LinkedStack<T> implements StackADT<T>
+{
+    private int count;  
+    private LinearNode<T> top; 
+
+    /**
+     * Creates an empty stack.
+     */
+    public LinkedStack()
+{
+count = 0;
+top = null;
+}
+
+
+    @Override
+    public boolean IsEmpty()
+
+    {
+        if(top == null)
+        {
+        System.out.println("Stack is empty");
+        }
+        return top == null;
+    }
+
+    @Override
+    public void Push(T element)
+{
+
+    top = new LinearNode(element, top);
+    System.out.println(element);
+    count++;
+
+
+}
+
+    @Override 
+    public T Pop() 
+{
+    T result;
+    System.out.println("Lets pop the top element!");
+
+    if (count == 0) 
+    {
+    System.out.println("Pop operation failed. "+ "The stack is empty.");
+    }
+
+    result = top.getElement();
+    top = top.getNext();
+    count--;
+    System.out.println("The element that we have poped is :" + result);
+    return result;
+
+}
+
+    Override
+    public String toString()
+{
+
+    String result = "<top of stack>\n";
+    LinearNode current = top;
+    while (current != null)
+    {   
+        result += current.getElement() + "\n";
+        current = current.getNext();
+    }
+    return result + "<bottom of stack>";
+
+}
+
+    @Override
+    public T Peek() {
+        System.out.println("Lets peek the top element!");
+        if(count == 0)
+        {
+         System.out.println("Peek failed stack is empty");
+        }
+        System.out.println("The element that we have peeked is: " + top.getElement());
+        return top.getElement();
+
+    }
+
+    @Override
+    public int Size() {
+        System.out.println("The size of the list now is: " + count);
+        return count;
+    }
+}
